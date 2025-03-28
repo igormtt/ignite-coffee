@@ -36,7 +36,7 @@ export default function ButtonGroup() {
         onClick={() => handleButtonClick(0)}
         icon={<CreditCard size={16} />}
         text="CARTÃO DE CRÉDITO"
-        value="CARTÃO DE CRÉDITO"
+      value="CARTÃO DE CRÉDITO"
       />
 
       <Button

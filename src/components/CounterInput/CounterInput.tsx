@@ -1,17 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { QuantityButton, QuantityInput, QuantitySelector } from "./style";
 import { Minus, Plus } from "phosphor-react";
+import { CheckoutContext } from "../../contexts/CheckoutContext";
 
 export default function CounterInput() {
-  const [quantity, setQuantity] = useState<number>(0);
+  const [quantityCoffee, setQuantityCoffee] = useState<number>(0);
+
+  const { setQuantityCart, quantityCart } = useContext(CheckoutContext);
   const sum = () => {
-    setQuantity(quantity + 1);
+    setQuantityCoffee(quantityCoffee + 1);
+    setQuantityCart(quantityCart + 1);
   };
   const decrease = () => {
-    if (quantity < 1) {
+    if (quantityCoffee < 1) {
       return;
     }
-    setQuantity(quantity - 1);
+    setQuantityCoffee(quantityCoffee - 1);
+    setQuantityCart(quantityCart - 1);
   };
 
   return (
@@ -19,7 +24,7 @@ export default function CounterInput() {
       <QuantityButton onClick={decrease}>
         <Minus size={14} />
       </QuantityButton>
-      <QuantityInput>{quantity}</QuantityInput>
+      <QuantityInput>{quantityCoffee}</QuantityInput>
       <QuantityButton onClick={sum}>
         <Plus size={14} />
       </QuantityButton>

@@ -8,8 +8,12 @@ import {
 } from "./style";
 import Logo from "/Logo.png";
 import { Link } from "react-router-dom";
+import { CheckoutContext } from "../../contexts/CheckoutContext";
+import { useContext } from "react";
 
 export default function Header() {
+  const { quantityCart } = useContext(CheckoutContext);
+
   return (
     <HeaderContainer>
       <div>
@@ -26,7 +30,7 @@ export default function Header() {
 
           <Link to="/checkout">
             <ButtonContainer>
-              <QuantidadeNoCarrinho>{0}</QuantidadeNoCarrinho>
+              <QuantidadeNoCarrinho>{quantityCart}</QuantidadeNoCarrinho>
               <ShoppingCart size={22} weight="fill" />
             </ButtonContainer>
           </Link>
