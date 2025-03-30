@@ -8,7 +8,7 @@ interface CounterInputProps {
 }
 
 export default function CounterInput({ coffeeId }: CounterInputProps) {
-  const { updateQuantity, cart } = useContext(CheckoutContext);
+  const { updateQuantity, cart, removeFromCart } = useContext(CheckoutContext);
   const coffee = cart.find((item) => item.id === coffeeId);
   const quantity = coffee ? coffee.quantity : 0;
 
@@ -19,6 +19,8 @@ export default function CounterInput({ coffeeId }: CounterInputProps) {
   const decreaseButton = () => {
     if (quantity > 1) {
       updateQuantity(coffeeId, quantity - 1);
+    } else {
+      removeFromCart(coffeeId);
     }
   };
 
