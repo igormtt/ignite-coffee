@@ -67,115 +67,129 @@ export default function Home() {
 
         <CoffeList>
           <Coffee
+            id="1"
             img="/xpresso.svg"
             name="Expresso Tradicional"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
+            id="2"
             img="/Americano.svg"
-            name="Expresso Tradicional"
+            name="Expresso Americano"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
+            id="3"
             img="/Expresso Cremoso.svg"
-            name="Expresso Tradicional"
+            name="Expresso Cremoso"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
+            id="4"
             img="/Café Gelado.svg"
-            name="Expresso Tradicional"
+            name="Expresso Gelado"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
+            id="5"
             img="/Café com Leite.svg"
-            name="Expresso Tradicional"
+            name="Expresso Caé com leite"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
+            id="6"
             img="/Latte.svg"
-            name="Expresso Tradicional"
+            name="Expresso Latte"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
+            id="7"
             img="/Capuccino.svg"
-            name="Expresso Tradicional"
+            name="Café Capuccino"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
+            id="8"
             img="/Macchiato.svg"
-            name="Expresso Tradicional"
+            name="Expresso Macchiato"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
+            id="9"
             img="/Mochaccino.svg"
-            name="Expresso Tradicional"
+            name="Expresso Mochaccino"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
-            img="/Chocolate quente.svg"
-            name="Expresso Tradicional"
+            id="10"
+            img="/Chocolate Quente.svg"
+            name="Chocolate quente"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
+            id="11"
             img="/Cubano.svg"
-            name="Expresso Tradicional"
+            name="Expresso Cubano"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
+            id="12"
             img="/Havaiano.svg"
-            name="Expresso Tradicional"
+            name="Expresso Havaiono"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
+            id="13"
             img="/Árabe.svg"
-            name="Expresso Tradicional"
+            name="Expresso Árabe"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
 
           <Coffee
+            id="14"
             img="/Irlandês.svg"
-            name="Expresso Tradicional"
+            name="Expresso Irlandês"
             tag="Tradicional"
             description="O tradicional café feito com água quente e grãos moídos"
-            value={(9.9).toLocaleString("pt-br", { minimumFractionDigits: 2 })}
+            value={9.9}
           />
         </CoffeList>
       </OurCoffees>

@@ -46,10 +46,11 @@ export default function Checkout() {
     throw new Error("CheckoutContext must be used within a CheckoutProvider");
   }
 
-  const { setData } = checkoutContext;
+  const { cart, removeFromCart } = useContext(CheckoutContext);
 
   const onSubmitForm = (data: CheckoutFormData) => {
-    setData(data);
+    checkoutContext.setFormData(data);
+    console.log(data);
     navigate("/success");
   };
 
@@ -152,48 +153,28 @@ export default function Checkout() {
 
           <CarrinhoDoCheckout>
             <ItemsDoCarrinho>
-              <div className="item">
-                <div className="item-image">
-                  <img src="/xpresso.svg" />
-                </div>
+              {cart.map((coffee) => (
+                <div className="item" key={coffee.id}>
+                  <div className="item-image">
+                    <img src={coffee.img} />
+                  </div>
 
-                <div className="item-name-and-actions">
-                  <p>Expresso Tradicional</p>
-                  <div className="conter-and-button">
-                    <CounterInput />
-                    <RemoveButton>
-                      <Trash />
-                      REMOVER
-                    </RemoveButton>
+                  <div className="item-name-and-actions">
+                    <p>{coffee.name}</p>
+                    <div className="conter-and-button">
+                      <CounterInput coffeeId={coffee.id} />
+                      <RemoveButton onClick={() => removeFromCart(coffee.id)}>
+                        <Trash />
+                        REMOVER
+                      </RemoveButton>
+                    </div>
+                  </div>
+
+                  <div className="price">
+                    <p>R${coffee.value.toFixed(2)}</p>
                   </div>
                 </div>
-
-                <div className="price">
-                  <p>R$9,90</p>
-                </div>
-              </div>
-              <Separator />
-
-              <div className="item">
-                <div className="item-image">
-                  <img src="/xpresso.svg" />
-                </div>
-
-                <div className="item-name-and-actions">
-                  <p>Expresso Tradicional</p>
-                  <div className="conter-and-button">
-                    <CounterInput />
-                    <RemoveButton>
-                      <Trash />
-                      REMOVER
-                    </RemoveButton>
-                  </div>
-                </div>
-
-                <div className="price">
-                  <p>R$9,90</p>
-                </div>
-              </div>
+              ))}
 
               <Separator />
             </ItemsDoCarrinho>
@@ -201,7 +182,7 @@ export default function Checkout() {
             <ConfirmacaoDoPedido>
               <ConfirmarItem>
                 <p>Total de items</p>
-                <p>R$ 29,70</p>
+                <p>{checkoutContext.itemQuantity}</p>
               </ConfirmarItem>
 
               <ConfirmarItem>
@@ -211,7 +192,7 @@ export default function Checkout() {
 
               <ConfirmarItem>
                 <p>Total</p>
-                R$ 33,20
+                R${checkoutContext.totalValue.toFixed(2)}
               </ConfirmarItem>
 
               <button type="submit">CONFIRMAR PEDIDO</button>

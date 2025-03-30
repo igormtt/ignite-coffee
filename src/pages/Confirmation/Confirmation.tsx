@@ -12,7 +12,8 @@ import { CheckoutContext } from "../../contexts/CheckoutContext";
 export default function Confirmation() {
   const checkoutContext = useContext(CheckoutContext);
 
-  const data = checkoutContext?.data;
+  const data = checkoutContext?.formData;
+  const paymentMethod = checkoutContext?.paymentMethod;
 
   useEffect(() => {
     console.log(data);
@@ -54,8 +55,8 @@ export default function Confirmation() {
             </div>
 
             <div className="col">
-              <p>Pagamento na Entrega</p>
-              <span>{data?.forma_pagament}</span>
+              <p>Forma de pagamento</p>
+              <span>{paymentMethod}</span>
             </div>
           </FormaDePagamento>
         </DadosEntrega>

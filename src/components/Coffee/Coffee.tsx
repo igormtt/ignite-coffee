@@ -7,18 +7,22 @@ import {
   CoffeeDescription,
 } from "./style";
 import CounterInput from "../CounterInput/CounterInput";
+import { useContext } from "react";
+import { CheckoutContext } from "../../contexts/CheckoutContext";
 
-interface CoffeComponenteProps {
+export interface CoffeeProps {
+  id: string;
   img: string;
   tag: string;
   tag2?: string;
   tag3?: string;
   name: string;
   description: string;
-  value: string;
+  value: number;
 }
 
 export default function Coffee({
+  id,
   img,
   tag,
   tag2,
@@ -26,11 +30,22 @@ export default function Coffee({
   name,
   description,
   value,
-}: CoffeComponenteProps) {
+}: CoffeeProps) {
+  const { addToCart, cart } = useContext(CheckoutContext);
+
+  // Verifica se o item já está no carrinho
+  const coffeeInCart = cart.find((item) => item.id === id);
+
+  const handleAddToCart = () => {
+    if (!coffeeInCart) {
+      addToCart({ id, img, name, value, quantity: 1 });
+    }
+  };
+
   return (
     <CoffeeComponente>
       <div>
-        <img src={img} alt="" />
+        <img src={img} alt={name} />
       </div>
 
       <CoffeeTags>
@@ -46,14 +61,13 @@ export default function Coffee({
       <BuyContainer>
         <div>
           <p>
-            R$
-            <span>{value}</span>
+            R$<span>{value.toFixed(2)}</span>
           </p>
         </div>
 
         <div className="group">
-          <CounterInput />
-          <div className="shopping-cart">
+          <CounterInput coffeeId={id} />
+          <div className="shopping-cart" onClick={handleAddToCart}>
             <ShoppingCart weight="fill" />
           </div>
         </div>

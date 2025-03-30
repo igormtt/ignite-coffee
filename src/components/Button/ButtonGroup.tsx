@@ -10,46 +10,39 @@ export default function ButtonGroup() {
     throw new Error("ButtonGroup deve estar dentro de um CheckoutProvider");
   }
 
-  const { data, setData } = context;
+  const { paymentMethod, setPaymentMethod } = context;
 
-  const [activeButton, setActiveButton] = useState<number | null>(
-    data?.forma_pagament ? Number(data.forma_pagament) : null
+  const [activeButton, setActiveButton] = useState<string | null>(
+    paymentMethod
   );
 
-  const handleButtonClick = (index: number) => {
-    setActiveButton(index);
-
-    setData((prevData) => {
-      if (!prevData) return null;
-
-      return {
-        ...prevData,
-        forma_pagament: index.toString(),
-      };
-    });
+  const handleButtonClick = (method: string) => {
+    setActiveButton(method);
+    setPaymentMethod(method);
+    console.log(`Método de pagamento selecionado: ${method}`);
   };
 
   return (
     <ButtonGroupComponent>
       <Button
-        isActive={activeButton === 0}
-        onClick={() => handleButtonClick(0)}
+        isActive={activeButton === "CARTÃO DE CRÉDITO"}
+        onClick={() => handleButtonClick("CARTÃO DE CRÉDITO")}
         icon={<CreditCard size={16} />}
         text="CARTÃO DE CRÉDITO"
-      value="CARTÃO DE CRÉDITO"
+        value="CARTÃO DE CRÉDITO"
       />
 
       <Button
-        isActive={activeButton === 1}
-        onClick={() => handleButtonClick(1)}
+        isActive={activeButton === "CARTÃO DE DÉBITO"}
+        onClick={() => handleButtonClick("CARTÃO DE DÉBITO")}
         icon={<Bank size={16} />}
         text="CARTÃO DE DÉBITO"
         value="CARTÃO DE DÉBITO"
       />
 
       <Button
-        isActive={activeButton === 2}
-        onClick={() => handleButtonClick(2)}
+        isActive={activeButton === "DINHEIRO"}
+        onClick={() => handleButtonClick("DINHEIRO")}
         icon={<Money size={16} />}
         text="DINHEIRO"
         value="DINHEIRO"
