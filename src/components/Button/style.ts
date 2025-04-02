@@ -32,6 +32,17 @@ export const Button = styled.button`
     background-color: #ebe5f9;
     border: 1px solid ${(props) => props.theme["purple-dark"]};
   }
+
+  @media (max-width: 1260px) {
+    width: 9rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+
+  @media (max-width: 620px) {
+    font-size: 0.5rem;
+    width: 8rem;
+  }
 `;
 
 export const ButtonGroup = styled.div`
@@ -39,4 +50,24 @@ export const ButtonGroup = styled.div`
   flex: 1;
   gap: 16px;
   flex-direction: row;
+
+  @media (max-width: 1260px) {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const ErrorMessage = styled.p`
+  color: ${(props) => props.theme["error"]};
+  font-size: 0.632rem;
+  font-weight: 400;
+  margin-top: 0.5rem;
+`;
+
+export const ErrorMessageWithNoBagItens = styled.p`
+  color: ${(props) => props.theme["error"]};
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-top: 1.5rem;
 `;

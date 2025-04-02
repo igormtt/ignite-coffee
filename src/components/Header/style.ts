@@ -6,6 +6,10 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0 10rem;
+
+  @media (max-width: 1260px) {
+    padding: 0 2rem;
+  }
 `;
 
 export const Location = styled.span`
@@ -20,7 +24,7 @@ export const Location = styled.span`
   background-color: ${(props) => props.theme["purple-ligt"]};
   color: ${(props) => props.theme["purple-dark"]};
   border-radius: 6px;
-  width: 153px;
+  width: 160px;
   height: 38px;
   padding: 8px;
 `;

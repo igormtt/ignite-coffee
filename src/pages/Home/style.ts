@@ -4,6 +4,10 @@ export const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
   padding-inline: 10rem;
+
+  @media (max-width: 1260px) {
+    padding-inline: 2rem;
+  }
 `;
 
 export const TopContent = styled.div`
@@ -12,6 +16,30 @@ export const TopContent = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 26px;
+
+  @media (max-width: 1260px) {
+    flex-direction: column;
+    gap: 2rem;
+    height: auto;
+    margin-top: 2rem;
+
+    .img-coffee {
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 700px) {
+      .img-coffee img {
+        width: 600px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .img-coffee img {
+        margin-bottom: none;
+        width: 300px;
+      }
+    }
+  }
 `;
 
 export const FirstSectionTitle = styled.div`
@@ -35,6 +63,17 @@ export const FirstSectionTitle = styled.div`
     font-size: 1.25rem;
     font-weight: 400;
   }
+
+  @media (max-width: 700px) {
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
 `;
 
 export const Items = styled.div`
@@ -45,6 +84,15 @@ export const Items = styled.div`
   gap: 20px;
 
   max-width: 567px;
+
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    max-width: 100%;
+    align-items: flex-start;
+  }
 `;
 
 const Colors = {
@@ -54,7 +102,7 @@ const Colors = {
   purple: "#8047F8",
 };
 
-export const Item = styled.div<{ bgColor: keyof typeof Colors }>`
+export const Item = styled.div<{ bgcolor: keyof typeof Colors }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,7 +115,7 @@ export const Item = styled.div<{ bgColor: keyof typeof Colors }>`
     align-items: center;
     width: 32px;
     height: 32px;
-    background-color: ${(props) => Colors[props.bgColor]};
+    background-color: ${(props) => Colors[props.bgcolor]};
     border-radius: 999px;
     color: ${(props) => props.theme["white-100"]};
   }

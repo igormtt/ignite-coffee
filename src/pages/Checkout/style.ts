@@ -20,13 +20,18 @@ export const GeralForm = styled.form`
   justify-content: center;
 
   margin-top: 2.2rem;
+
+  @media (max-width: 1030px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const Formulario = styled.div`
   display: flex;
   padding: 2.5rem;
   width: 40rem;
-  height: 23.25rem;
+  height: auto;
   flex-direction: column;
 
   border-radius: 6px;
@@ -51,6 +56,15 @@ export const Formulario = styled.div`
     font-weight: 400;
     font-size: 0.875rem;
   }
+
+  @media (max-width: 1260px) {
+    width: 35rem;
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 630px) {
+    width: 30rem;
+  }
 `;
 
 export const InputArea = styled.div`
@@ -65,12 +79,20 @@ export const InputArea = styled.div`
     height: 2.625rem;
     outline: none;
     padding: 11px;
-    color: ${(props) => props.theme["gray-200"]};
+    color: ${(props) => props.theme["gray-400"]};
     line-height: 1.3;
     font-size: 0.875rem;
     font-weight: 400;
 
     border: 1px solid ${(props) => props.theme["white-500"]};
+    &::placeholder {
+      color: ${(props) => props.theme["gray-200"]};
+    }
+
+    @media (max-width: 1260px) {
+      width: 100%;
+      padding: 0.5rem;
+    }
   }
 
   #cep {
@@ -81,6 +103,10 @@ export const InputArea = styled.div`
 export const NumeroEComplemento = styled.div`
   display: flex;
   gap: 12px;
+
+  @media (max-width: 1260px) {
+    width: 100%;
+  }
 
   #numero {
     width: 12.5rem;
@@ -95,16 +121,40 @@ export const BairroCidadeUF = styled.div`
   display: flex;
   gap: 12px;
 
+  @media (max-width: 1260px) {
+    justify-content: center;
+  }
+
   #bairro {
     width: 12.5rem;
+
+    @media (max-width: 620px) {
+      width: 11rem;
+    }
   }
 
   #cidade {
-    width: 17.25rem;
+    width: 17rem;
+
+    @media (max-width: 1260px) {
+      width: 15rem;
+    }
+
+    @media (max-width: 620px) {
+      width: 11rem;
+    }
   }
 
   #uf {
     width: 3.75rem;
+
+    @media (max-width: 1260px) {
+      width: 3rem;
+    }
+
+    @media (max-width: 620px) {
+      width: 3.5rem;
+    }
   }
 `;
 
@@ -116,7 +166,6 @@ export const PaymentMethod = styled.div`
   padding: 40px;
   width: 40rem;
   height: 12.9375rem;
-
   background-color: ${(props) => props.theme["white-300"]};
   border-radius: 6px;
 
@@ -140,6 +189,16 @@ export const PaymentMethod = styled.div`
     font-weight: 400;
     font-size: 0.875rem;
   }
+
+  @media (max-width: 1260px) {
+    width: 35rem;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 620px) {
+    width: 30rem;
+  }
 `;
 
 export const PaymantOptions = styled.div`
@@ -149,24 +208,48 @@ export const PaymantOptions = styled.div`
   gap: 12px;
 `;
 
+export const CheckContainer = styled.div`
+  .titleCart h3 {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 1.125rem;
+    color: ${(props) => props.theme["gray-400"]};
+  }
+
+  @media (max-width: 1030px) {
+    width: 35rem;
+    height: 30rem;
+  }
+
+  @media (max-width: 620px) {
+    width: 30rem;
+  }
+`;
+
 export const CarrinhoDoCheckout = styled.div`
   display: flex;
   width: 28rem;
   height: 31.125rem;
   flex-direction: column;
   margin-top: 0.9375rem;
-
   padding: 2.5rem;
 
   border-radius: 6px 44px 44px 6px;
   background-color: ${(props) => props.theme["white-300"]};
-`;
 
-export const CheckContainer = styled.div`
-  .titleCart h3 {
-    font-family: "Baloo 2", sans-serif;
-    font-size: 1.125rem;
-    color: ${(props) => props.theme["gray-400"]};
+  @media (max-width: 1260px) {
+    width: 25rem;
+    height: 21rem;
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 1030px) {
+    width: 35rem;
+    height: 25rem;
+    margin-bottom: 5rem;
+  }
+
+  @media (max-width: 620px) {
+    width: 30rem;
   }
 `;
 
@@ -174,6 +257,18 @@ export const ItemsDoCarrinho = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  height: 18rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+
+  @media (max-width: 1260px) {
+    height: 7rem;
+    width: 100%;
+  }
+
+  @media (max-width: 1030px) {
+    height: 11rem;
+  }
 
   .item {
     display: flex;
@@ -181,6 +276,14 @@ export const ItemsDoCarrinho = styled.div`
     gap: 0.5rem;
     width: 23rem;
     height: 5rem;
+
+    @media (max-width: 1260px) {
+      width: 21rem;
+    }
+
+    @media (max-width: 1030px) {
+      width: 100%;
+    }
 
     .price {
       display: flex;
@@ -273,10 +376,50 @@ export const ConfirmacaoDoPedido = styled.div`
 
     background-color: ${(props) => props.theme["yellow"]};
     color: ${(props) => props.theme["white-100"]};
+
+    &:hover {
+      background-color: ${(props) => props.theme["yellow-dark"]};
+    }
+  }
+
+  @media (max-width: 1260px) {
+    width: 100%;
+    gap: 10px;
+
+    button {
+      align-self: center;
+      width: 20rem;
+    }
   }
 `;
 
 export const ConfirmarItem = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+export const FindByCepButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: ${(props) => props.theme["yellow"]};
+  width: 3.125rem;
+  height: 2.625rem;
+  margin-left: -4px;
+  svg {
+    color: ${(props) => props.theme["white-100"]};
+  }
+  &:hover {
+    background-color: ${(props) => props.theme["yellow-dark"]};
+  }
+`;
+
+export const CepGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
 `;

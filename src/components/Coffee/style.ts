@@ -26,12 +26,13 @@ export const Coffee = styled.div`
 export const CoffeeTags = styled.div`
   display: flex;
   justify-content: center;
+  gap: 0.5rem;
 
   span {
     color: ${(props) => props.theme["yellow-dark"]};
     background-color: ${(props) => props.theme["yellow-light"]};
     padding: 4px 8px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     line-height: 1.3;
     font-weight: bold;
     border-radius: 999px;

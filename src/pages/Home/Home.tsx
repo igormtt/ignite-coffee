@@ -15,9 +15,13 @@ import {
   CoffeList,
 } from "./style";
 
+import { ToastContainer } from "react-toastify";
+
 export default function Home() {
   return (
     <HomeContainer>
+      <ToastContainer />
+
       <TopContent>
         <FirstSectionTitle>
           <h1>Encontre o café perfeito para qualquer hora do dia</h1>
@@ -27,28 +31,28 @@ export default function Home() {
           </p>
 
           <Items>
-            <Item bgColor="yellow_dark">
+            <Item bgcolor="yellow_dark">
               <div>
                 <ShoppingCart size={16} weight="fill" />
               </div>
               Compra simples e segura
             </Item>
 
-            <Item bgColor="yellow">
+            <Item bgcolor="yellow">
               <div>
                 <Package size={16} weight="fill" />
               </div>
               Embalagem mantém o café intacto
             </Item>
 
-            <Item bgColor="gray">
+            <Item bgcolor="gray">
               <div>
                 <Timer size={16} weight="fill" />
               </div>
               Entrega rápida e ratreada
             </Item>
 
-            <Item bgColor="purple">
+            <Item bgcolor="purple">
               <div>
                 <CoffeeIcon size={16} weight="fill" />
               </div>
@@ -57,7 +61,7 @@ export default function Home() {
           </Items>
         </FirstSectionTitle>
 
-        <div>
+        <div className="img-coffee">
           <img src="/Coffee.svg" />
         </div>
       </TopContent>
@@ -70,7 +74,7 @@ export default function Home() {
             id="1"
             img="/xpresso.svg"
             name="Expresso Tradicional"
-            tag="Tradicional"
+            tag="TRADICIONAL"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -79,7 +83,7 @@ export default function Home() {
             id="2"
             img="/Americano.svg"
             name="Expresso Americano"
-            tag="Tradicional"
+            tag="TRADICIONAL"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -88,7 +92,7 @@ export default function Home() {
             id="3"
             img="/Expresso Cremoso.svg"
             name="Expresso Cremoso"
-            tag="Tradicional"
+            tag="TRADICIONAL"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -97,7 +101,8 @@ export default function Home() {
             id="4"
             img="/Café Gelado.svg"
             name="Expresso Gelado"
-            tag="Tradicional"
+            tag="TRADICIONAL"
+            tag2="GELADO"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -106,7 +111,8 @@ export default function Home() {
             id="5"
             img="/Café com Leite.svg"
             name="Expresso Caé com leite"
-            tag="Tradicional"
+            tag="TRADICIONAL"
+            tag2="COM LEITE"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -115,7 +121,8 @@ export default function Home() {
             id="6"
             img="/Latte.svg"
             name="Expresso Latte"
-            tag="Tradicional"
+            tag="TRADICIONAL"
+            tag2="COM LEITE"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -124,7 +131,8 @@ export default function Home() {
             id="7"
             img="/Capuccino.svg"
             name="Café Capuccino"
-            tag="Tradicional"
+            tag="TRADICIONAL"
+            tag2="COM LEITE"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -133,7 +141,8 @@ export default function Home() {
             id="8"
             img="/Macchiato.svg"
             name="Expresso Macchiato"
-            tag="Tradicional"
+            tag="TRADICIONAL"
+            tag2="COM LEITE"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -142,7 +151,8 @@ export default function Home() {
             id="9"
             img="/Mochaccino.svg"
             name="Expresso Mochaccino"
-            tag="Tradicional"
+            tag="TRADICIONAL"
+            tag2="COM LEITE"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -151,7 +161,8 @@ export default function Home() {
             id="10"
             img="/Chocolate Quente.svg"
             name="Chocolate quente"
-            tag="Tradicional"
+            tag="TRADICIONAL"
+            tag2="COM LEITE"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -160,7 +171,9 @@ export default function Home() {
             id="11"
             img="/Cubano.svg"
             name="Expresso Cubano"
-            tag="Tradicional"
+            tag="ESPECIAL"
+            tag2="ALCOÓLICO"
+            tag3="GELADO"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -169,7 +182,7 @@ export default function Home() {
             id="12"
             img="/Havaiano.svg"
             name="Expresso Havaiono"
-            tag="Tradicional"
+            tag="ESPECIAL"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -178,7 +191,7 @@ export default function Home() {
             id="13"
             img="/Árabe.svg"
             name="Expresso Árabe"
-            tag="Tradicional"
+            tag="ESPECIAL"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />
@@ -187,7 +200,8 @@ export default function Home() {
             id="14"
             img="/Irlandês.svg"
             name="Expresso Irlandês"
-            tag="Tradicional"
+            tag="ESPECIAL"
+            tag2="ALCOÓLICO"
             description="O tradicional café feito com água quente e grãos moídos"
             value={9.9}
           />

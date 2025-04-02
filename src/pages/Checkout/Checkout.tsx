@@ -1,5 +1,10 @@
 import { useForm } from "react-hook-form";
-import { CurrencyDollar, MapPinLine, Trash } from "phosphor-react";
+import {
+  CurrencyDollar,
+  MagnifyingGlass,
+  MapPinLine,
+  Trash,
+} from "phosphor-react";
 import {
   CheckoutContainer,
   Formulario,
@@ -16,18 +21,37 @@ import {
   ConfirmacaoDoPedido,
   ConfirmarItem,
   GeralForm,
+  FindByCepButton,
+  CepGroup,
 } from "./style";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CheckoutContext } from "../../contexts/CheckoutContext";
 
 import ButtonGroup from "../../components/Button/ButtonGroup";
 import CounterInput from "../../components/CounterInput/CounterInput";
 import { useNavigate } from "react-router-dom";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  ErrorMessage,
+  ErrorMessageWithNoBagItens,
+} from "../../components/Button/style";
+
+const sendFormDataSchema = z.object({
+  cep: z.string().min(1, "Campo CEP obrigatório").max(8),
+  rua: z.string().min(1, "Campo rua obrigatório"),
+  numero: z.coerce.number().optional(),
+  complemento: z.string().optional(),
+  bairro: z.string().min(1, "Campo bairro obrigatório"),
+  cidade: z.string().min(1, "Campo cidade obrigatório"),
+  uf: z.string().min(1, "UF obrigatório").max(2),
+  forma_pagament: z.string().min(1, "Selecione a forma de pagamento"),
+});
 
 export interface CheckoutFormData {
   cep: string;
   rua: string;
-  numero: number;
+  numero?: number;
   complemento?: string;
   bairro: string;
   cidade: string;
@@ -36,7 +60,27 @@ export interface CheckoutFormData {
 }
 
 export default function Checkout() {
-  const { register, handleSubmit } = useForm<CheckoutFormData>();
+  const [cep, setCep] = useState<string>("");
+  const [formError, setFormError] = useState<string | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<CheckoutFormData>({
+    resolver: zodResolver(sendFormDataSchema),
+    defaultValues: {
+      cep: "",
+      rua: "",
+      numero: undefined,
+      complemento: "",
+      bairro: "",
+      cidade: "",
+      uf: "",
+      forma_pagament: "",
+    },
+  });
 
   const navigate = useNavigate();
 
@@ -46,11 +90,29 @@ export default function Checkout() {
     throw new Error("CheckoutContext must be used within a CheckoutProvider");
   }
 
-  const { cart, removeFromCart } = useContext(CheckoutContext);
+  async function handleFindCep() {
+    const dataForm = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const data = await dataForm.json();
+    setValue("rua", data.logradouro);
+    setValue("bairro", data.bairro);
+    setValue("cidade", data.localidade);
+    setValue("uf", data.uf);
+    setValue("complemento", data.complemento);
+  }
+
+  const { cart, removeFromCart } = checkoutContext;
 
   const onSubmitForm = (data: CheckoutFormData) => {
+    if (checkoutContext.itemQuantity <= 0) {
+      setFormError(
+        "Carrinho vazio! Adicione itens antes de finalizar o pedido."
+      );
+      return;
+    }
+
+    setFormError(null);
+
     checkoutContext.setFormData(data);
-    console.log(data);
     navigate("/success");
   };
 
@@ -75,26 +137,52 @@ export default function Checkout() {
               {/* FAZER A BUSCA PELO CEP */}
 
               <InputArea>
-                <input
-                  {...register("cep")}
-                  type="text"
-                  placeholder="CEP"
-                  id="cep"
-                />
-                <input
-                  {...register("rua")}
-                  type="text"
-                  placeholder="Rua"
-                  id="rua"
-                />
+                <div>
+                  <CepGroup>
+                    <input
+                      {...register("cep")}
+                      type="text"
+                      placeholder="CEP"
+                      id="cep"
+                      maxLength={8}
+                      onChange={(e) => setCep(e.target.value)}
+                    />
+                    <FindByCepButton type="button" onClick={handleFindCep}>
+                      <MagnifyingGlass size={22} weight="bold" />
+                    </FindByCepButton>
+                  </CepGroup>
+                  {errors.cep && (
+                    <ErrorMessage>{errors.cep.message}</ErrorMessage>
+                  )}
+                </div>
+
+                <div
+                  style={{ display: "flex", flexDirection: "column", flex: 1 }}
+                >
+                  <input
+                    {...register("rua")}
+                    type="text"
+                    placeholder="Rua"
+                    id="rua"
+                  />
+                  {errors.rua && (
+                    <ErrorMessage>{errors.rua.message}</ErrorMessage>
+                  )}
+                </div>
 
                 <NumeroEComplemento>
-                  <input
-                    {...register("numero")}
-                    type="text"
-                    placeholder="Número"
-                    id="numero"
-                  />
+                  <div>
+                    <input
+                      {...register("numero")}
+                      type="text"
+                      placeholder="Número. Vazio para S/N"
+                      id="numero"
+                    />
+                    {errors.numero && (
+                      <ErrorMessage>{errors.numero.message}</ErrorMessage>
+                    )}
+                  </div>
+
                   <input
                     {...register("complemento")}
                     type="text"
@@ -104,24 +192,42 @@ export default function Checkout() {
                 </NumeroEComplemento>
 
                 <BairroCidadeUF>
-                  <input
-                    {...register("bairro")}
-                    type="text"
-                    placeholder="Bairro"
-                    id="bairro"
-                  />
-                  <input
-                    {...register("cidade")}
-                    type="text"
-                    placeholder="Cidade"
-                    id="cidade"
-                  />
-                  <input
-                    {...register("uf")}
-                    type="text"
-                    placeholder="UF"
-                    id="uf"
-                  />
+                  <div>
+                    <input
+                      {...register("bairro")}
+                      type="text"
+                      placeholder="Bairro"
+                      id="bairro"
+                    />
+
+                    {errors.bairro && (
+                      <ErrorMessage>{errors.bairro.message}</ErrorMessage>
+                    )}
+                  </div>
+
+                  <div>
+                    <input
+                      {...register("cidade")}
+                      type="text"
+                      placeholder="Cidade"
+                      id="cidade"
+                    />
+                    {errors.cidade && (
+                      <ErrorMessage>{errors.cidade.message}</ErrorMessage>
+                    )}
+                  </div>
+
+                  <div>
+                    <input
+                      {...register("uf")}
+                      type="text"
+                      placeholder="UF"
+                      id="uf"
+                    />
+                    {errors.uf && (
+                      <ErrorMessage>{errors.uf.message}</ErrorMessage>
+                    )}
+                  </div>
                 </BairroCidadeUF>
               </InputArea>
             </Formulario>
@@ -141,7 +247,14 @@ export default function Checkout() {
             </div>
 
             <PaymantOptions>
-              <ButtonGroup />
+              <ButtonGroup
+                error={
+                  errors.forma_pagament?.message
+                    ? "Selecione uma forma de pagamento"
+                    : null
+                }
+                setValue={setValue}
+              />
             </PaymantOptions>
           </PaymentMethod>
         </div>
@@ -187,7 +300,11 @@ export default function Checkout() {
 
               <ConfirmarItem>
                 <p>Entrega</p>
-                <p>R$ 3.50</p>
+                {checkoutContext.itemQuantity <= 0 ? (
+                  <p>R$0,00</p>
+                ) : (
+                  <p>R$ 3.50</p>
+                )}
               </ConfirmarItem>
 
               <ConfirmarItem>
@@ -196,6 +313,11 @@ export default function Checkout() {
               </ConfirmarItem>
 
               <button type="submit">CONFIRMAR PEDIDO</button>
+              {formError && (
+                <ErrorMessageWithNoBagItens>
+                  {formError}
+                </ErrorMessageWithNoBagItens>
+              )}
             </ConfirmacaoDoPedido>
           </CarrinhoDoCheckout>
         </CheckContainer>

@@ -6,7 +6,7 @@ import {
   LocalDeEntrega,
   PrevisaoDeEntrega,
 } from "./style";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CheckoutContext } from "../../contexts/CheckoutContext";
 
 export default function Confirmation() {
@@ -14,10 +14,6 @@ export default function Confirmation() {
 
   const data = checkoutContext?.formData;
   const paymentMethod = checkoutContext?.paymentMethod;
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   return (
     <ConfirmationContainer>
@@ -32,8 +28,11 @@ export default function Confirmation() {
             </div>
             {data && (
               <p className="paragraph">
-                Entrega em <span>{data.rua}</span> {data.bairro} - {data.cidade}
-                , {data.uf}
+                Entrega em{" "}
+                <span>
+                  {data.rua} - {data.numero == 0 ? "S/N" : data.numero},
+                </span>{" "}
+                {data.bairro} - {data.cidade}, {data.uf}
               </p>
             )}
           </LocalDeEntrega>

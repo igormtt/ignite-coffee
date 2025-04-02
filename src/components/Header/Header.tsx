@@ -10,6 +10,7 @@ import Logo from "/Logo.png";
 import { Link } from "react-router-dom";
 import { CheckoutContext } from "../../contexts/CheckoutContext";
 import { useContext } from "react";
+import { toast } from "react-toastify";
 
 export default function Header() {
   const { quantityCart } = useContext(CheckoutContext);
@@ -25,15 +26,30 @@ export default function Header() {
       <div>
         <Inform>
           <Location>
-            <MapPin size={22} weight="fill" /> Porto Alegre, RS
+            <MapPin size={22} weight="fill" /> Rio de Janeiro, RJ
           </Location>
 
-          <Link to="/checkout">
-            <ButtonContainer>
+          {quantityCart > 0 ? (
+            <Link to="/checkout">
+              <ButtonContainer>
+                <QuantidadeNoCarrinho>{quantityCart}</QuantidadeNoCarrinho>
+                <ShoppingCart size={22} weight="fill" />
+              </ButtonContainer>
+            </Link>
+          ) : (
+            <ButtonContainer
+              onClick={() =>
+                toast.warning("Adicione itens ao carrinho", {
+                  autoClose: 3000,
+                  position: "top-right",
+                  theme: "colored",
+                })
+              }
+            >
               <QuantidadeNoCarrinho>{quantityCart}</QuantidadeNoCarrinho>
               <ShoppingCart size={22} weight="fill" />
             </ButtonContainer>
-          </Link>
+          )}
         </Inform>
       </div>
     </HeaderContainer>
