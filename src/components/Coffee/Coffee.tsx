@@ -66,7 +66,7 @@ export default function Coffee({
         </div>
 
         <div className="group">
-          <CounterInput coffeeId={id} />
+          {coffeeInCart && <CounterInput coffeeId={id} />}
           <div className="shopping-cart" onClick={handleAddToCart}>
             <ShoppingCart weight="fill" />
           </div>
