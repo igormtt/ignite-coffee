@@ -47,6 +47,11 @@ export const Button = styled.button`
   @media (max-width: 520px) {
     width: 7rem;
   }
+
+  @media (max-width: 480px) {
+    font-size: 0.45rem;
+    width: 6.7rem;
+  }
 `;
 
 export const ButtonGroup = styled.div`

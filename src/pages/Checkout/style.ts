@@ -69,6 +69,10 @@ export const Formulario = styled.div`
   @media (max-width: 520px) {
     width: 26rem;
   }
+
+  @media (max-width: 480px) {
+    width: 23rem;
+  }
 `;
 
 export const InputArea = styled.div`
@@ -104,6 +108,10 @@ export const InputArea = styled.div`
 
   #cep {
     width: 12.5rem;
+
+    @media (max-width: 480px) {
+      width: 100%;
+    }
   }
 `;
 
@@ -142,6 +150,10 @@ export const BairroCidadeUF = styled.div`
     @media (max-width: 520px) {
       width: 9rem;
     }
+
+    @media (max-width: 480px) {
+      width: 8rem;
+    }
   }
 
   #cidade {
@@ -157,6 +169,9 @@ export const BairroCidadeUF = styled.div`
     @media (max-width: 520px) {
       width: 9rem;
     }
+    @media (max-width: 480px) {
+      width: 8rem;
+    }
   }
 
   #uf {
@@ -168,6 +183,10 @@ export const BairroCidadeUF = styled.div`
 
     @media (max-width: 620px) {
       width: 3.5rem;
+    }
+
+    @media (max-width: 480px) {
+      width: 2.5rem;
     }
   }
 `;
@@ -220,6 +239,10 @@ export const PaymentMethod = styled.div`
   @media (max-width: 520px) {
     width: 26rem;
   }
+
+  @media (max-width: 480px) {
+    width: 23rem;
+  }
 `;
 
 export const PaymantOptions = styled.div`
@@ -247,6 +270,10 @@ export const CheckContainer = styled.div`
 
   @media (max-width: 520px) {
     width: 26rem;
+  }
+
+  @media (max-width: 480px) {
+    width: 23rem;
   }
 `;
 
@@ -279,6 +306,10 @@ export const CarrinhoDoCheckout = styled.div`
 
   @media (max-width: 520px) {
     width: 26rem;
+  }
+
+  @media (max-width: 480px) {
+    width: 23rem;
   }
 `;
 
