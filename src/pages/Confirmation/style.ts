@@ -18,6 +18,10 @@ export const ConfirmationContainer = styled.main`
       font-weight: bolder;
       font-size: 2rem;
       line-height: 1.3;
+
+      @media (max-width: 570px) {
+        font-size: 1.6rem;
+      }
     }
 
     p {
@@ -25,6 +29,20 @@ export const ConfirmationContainer = styled.main`
       font-size: 1.25rem;
       line-height: 1.3;
       font-weight: 400;
+
+      @media (max-width: 570px) {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 570px) {
+    img {
+      width: 300px;
     }
   }
 `;
@@ -57,6 +75,16 @@ export const DadosEntrega = styled.div`
       linear-gradient(white 0 0);
     -webkit-mask-composite: destination-out;
   }
+
+  @media (max-width: 570px) {
+    display: flex;
+    width: 22rem;
+    height: auto;
+
+    span {
+      font-size: 0.9rem;
+    }
+  }
 `;
 
 const baseSuccessBox = styled.div`
@@ -80,6 +108,11 @@ const baseSuccessBox = styled.div`
     color: ${(props) => props.theme["gray-300"]};
     line-height: 1.3;
   }
+
+  @media (max-width: 570px) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const LocalDeEntrega = styled(baseSuccessBox)`
@@ -92,6 +125,14 @@ export const LocalDeEntrega = styled(baseSuccessBox)`
   }
   .paragraph {
     font-size: 1rem;
+    max-width: 16rem;
+  }
+
+  @media (max-width: 570px) {
+    .paragraph {
+      width: auto;
+      font-size: 0.9rem;
+    }
   }
 `;
 
@@ -115,6 +156,12 @@ export const PrevisaoDeEntrega = styled(baseSuccessBox)`
 
     p {
       font-size: 1rem;
+    }
+
+    @media (max-width: 570px) {
+      p {
+        font-size: 0.9rem;
+      }
     }
   }
 `;
@@ -144,6 +191,12 @@ export const FormaDePagamento = styled(baseSuccessBox)`
       justify-content: flex-start;
       align-items: flex-start;
       font-size: 1rem;
+    }
+
+    @media (max-width: 570px) {
+      p {
+        font-size: 0.9rem;
+      }
     }
   }
 `;

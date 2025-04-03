@@ -65,6 +65,10 @@ export const Formulario = styled.div`
   @media (max-width: 630px) {
     width: 30rem;
   }
+
+  @media (max-width: 520px) {
+    width: 26rem;
+  }
 `;
 
 export const InputArea = styled.div`
@@ -86,6 +90,9 @@ export const InputArea = styled.div`
 
     border: 1px solid ${(props) => props.theme["white-500"]};
     &::placeholder {
+      @media (max-width: 1030px) {
+        font-size: 0.75rem;
+      }
       color: ${(props) => props.theme["gray-200"]};
     }
 
@@ -131,6 +138,10 @@ export const BairroCidadeUF = styled.div`
     @media (max-width: 620px) {
       width: 11rem;
     }
+
+    @media (max-width: 520px) {
+      width: 9rem;
+    }
   }
 
   #cidade {
@@ -142,6 +153,9 @@ export const BairroCidadeUF = styled.div`
 
     @media (max-width: 620px) {
       width: 11rem;
+    }
+    @media (max-width: 520px) {
+      width: 9rem;
     }
   }
 
@@ -174,13 +188,16 @@ export const PaymentMethod = styled.div`
   .dados {
     display: flex;
     gap: 8px;
+
+    @media (max-width: 1260px) {
+      gap: 1rem;
+    }
   }
 
   .dados-ext span {
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.3;
-
     color: ${(props) => props.theme["gray-400"]};
   }
 
@@ -198,6 +215,10 @@ export const PaymentMethod = styled.div`
 
   @media (max-width: 620px) {
     width: 30rem;
+  }
+
+  @media (max-width: 520px) {
+    width: 26rem;
   }
 `;
 
@@ -222,6 +243,10 @@ export const CheckContainer = styled.div`
 
   @media (max-width: 620px) {
     width: 30rem;
+  }
+
+  @media (max-width: 520px) {
+    width: 26rem;
   }
 `;
 
@@ -250,6 +275,10 @@ export const CarrinhoDoCheckout = styled.div`
 
   @media (max-width: 620px) {
     width: 30rem;
+  }
+
+  @media (max-width: 520px) {
+    width: 26rem;
   }
 `;
 

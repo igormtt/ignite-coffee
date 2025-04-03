@@ -43,6 +43,10 @@ export const Button = styled.button`
     font-size: 0.5rem;
     width: 8rem;
   }
+
+  @media (max-width: 520px) {
+    width: 7rem;
+  }
 `;
 
 export const ButtonGroup = styled.div`
