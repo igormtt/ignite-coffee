@@ -24,7 +24,7 @@ import {
   FindByCepButton,
   CepGroup,
 } from "./style";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CheckoutContext } from "../../contexts/CheckoutContext";
 
 import ButtonGroup from "../../components/Button/ButtonGroup";
@@ -85,6 +85,12 @@ export default function Checkout() {
   const navigate = useNavigate();
 
   const checkoutContext = useContext(CheckoutContext);
+
+  useEffect(() => {
+    if (checkoutContext.itemQuantity <= 0) {
+      navigate("/");
+    }
+  }, []);
 
   if (!checkoutContext) {
     throw new Error("CheckoutContext must be used within a CheckoutProvider");
