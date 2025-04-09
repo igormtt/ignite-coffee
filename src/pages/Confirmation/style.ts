@@ -90,7 +90,7 @@ export const DadosEntrega = styled.div`
 const baseSuccessBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: row;
 
   gap: 12px;

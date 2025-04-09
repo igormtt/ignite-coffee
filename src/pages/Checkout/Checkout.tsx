@@ -61,6 +61,7 @@ export interface CheckoutFormData {
 
 export default function Checkout() {
   const [cep, setCep] = useState<string>("");
+  const [cepError, setCepError] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
 
   const {
@@ -92,11 +93,11 @@ export default function Checkout() {
     }
   }, []);
 
-  if (!checkoutContext) {
-    throw new Error("CheckoutContext must be used within a CheckoutProvider");
-  }
-
   async function handleFindCep() {
+    if (!cep) {
+      setCepError("Insira um CEP válido");
+    }
+
     const dataForm = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
     const data = await dataForm.json();
     setValue("rua", data.logradouro);
@@ -140,7 +141,6 @@ export default function Checkout() {
                   <p>Informe o endereço de entrega</p>
                 </div>
               </div>
-              {/* FAZER A BUSCA PELO CEP */}
 
               <InputArea>
                 <div>
@@ -157,9 +157,7 @@ export default function Checkout() {
                       <MagnifyingGlass size={22} weight="bold" />
                     </FindByCepButton>
                   </CepGroup>
-                  {errors.cep && (
-                    <ErrorMessage>{errors.cep.message}</ErrorMessage>
-                  )}
+                  {cepError && <ErrorMessage>{cepError}</ErrorMessage>}
                 </div>
 
                 <div
